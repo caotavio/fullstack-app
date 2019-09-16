@@ -12,15 +12,27 @@ export default class Data {
         if (body !== null) {
             options.body = JSON.stringify(body);
         }
-
-        async getUser() {
-            //get user method
-        }
-          
-        async createUser() {
-            //create user method
-        }
         
         return fetch(url, options);
+    }
+
+    async getUser() {
+        //create user method
+    }
+    
+    // Creates new user
+    async createUser(user) {
+        const response = await this.api('/users', 'POST', user);
+        if (response.status === 201) {
+            return [];
+        } else if (response.status === 400) {
+            return response.json().then(data => {
+                const errors = [];
+                data.errors.map((error) => errors.push(error.message));
+                return errors;
+            });
+        } else {
+            throw new Error();
+        }
     }
 }

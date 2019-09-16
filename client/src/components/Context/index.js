@@ -6,7 +6,7 @@ Context is a HOC(higher-order component) that returns a Provider component that 
 import React, { Component } from 'react';
 import Data from '../users/Data';
 
-const stateContext = React.createContext();
+const Context = React.createContext();
 
 export class Provider extends Component {
 
@@ -20,31 +20,34 @@ export class Provider extends Component {
     //all of the functions that handle state should be here 
 
     render() {
-        //state here
+        const user = this.state //WHEN AUTHENTICATION IS DONE SWITCH THIS TO AUTHENTICATED USER AND ADD THE ACTIONS NEEDED
 
-        //value here
+        const value = {
+            user,
+            data: this.data
+        };
 
         return (
-            <stateContext.Provider value={value}>
+            <Context.Provider value={value}>
 
               { this.props.children } 
-            </stateContext.Provider>
+            </Context.Provider>
         );
     }
 }
 //{ this.props.children } is a special React prop that lets you pass components as data to other components
 //it will pass and render anything that we include between the provider tags 
 
-export const Consumer = stateContext.Consumer;
+export const Consumer = Context.Consumer;
 
 
 //a higher order function that automatically subscribes the component that has it to all actions and context changes
 export default function withContext(Component) {
     return function ContextComponent(props) {
         return (
-            <stateContext.Consumer>
+            <Context.Consumer>
                 {context => <Component {...props} context={context} />}
-            </stateContext.Consumer>
+            </Context.Consumer>
         );
     }
   }
