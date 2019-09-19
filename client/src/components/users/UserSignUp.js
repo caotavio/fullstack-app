@@ -44,44 +44,23 @@ export default class UserSignUp extends Component {
             confirmPassword
         };
 
-        //checks if all fields have values, then creates the user
-        if (firstName === '') {
+        context.data.createUser(user)
+        .then( errors => {
+            if (errors.length) {
+                this.setState({ errors });
+            } else {
+                console.log(`${firstName} ${lastName} is successfully signed up and authenticated!`);
+                context.actions.signIn(emailAddress, password)
+                                .then(() => {
+                                    this.props.history.push('/')
+                });
+            }
+        })
+        .catch( err => {
             this.setState({
-                errors: ["Please incluse first name."]
+                errors: [err.message]
             });
-        } else if (lastName === ''){
-            this.setState({
-                errors: ["Please incluse last name."]
-            });
-        } else if (emailAddress === ''){
-            this.setState({
-                errors: ["A valid email address is required"]
-            });
-        } else if (password === ''){
-            this.setState({
-                errors: ["It is important that you create a password for future access."]
-            });
-        } else if (password !== confirmPassword) {
-            this.setState({
-                errors: ["This field's input must match your password."]
-            });
-        } else {
-            console.log(`${firstName} ${lastName} is successfully signed up and authenticated!`);
-            context.data.createUser(user)
-            .then( errors => {
-                if (errors.length) {
-                    this.setState({ errors });
-                } else {
-                    context.actions.signIn(emailAddress, password)
-                                    .then(() => {
-                                        this.props.history.push('/')
-                    });
-                }
-            })
-            .catch( err => {
-                this.props.history.push('/error');
-            });
-        }
+        });
     }
 
     cancel = () => {
@@ -156,3 +135,5 @@ export default class UserSignUp extends Component {
         );
     }
 }
+
+// FIX CSS

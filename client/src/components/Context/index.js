@@ -20,11 +20,16 @@ export class Provider extends Component {
     //all of the functions that handle state should be here 
 
     render() {
-        const user = this.state //WHEN AUTHENTICATION IS DONE SWITCH THIS TO AUTHENTICATED USER AND ADD THE ACTIONS NEEDED
+        // const authenticatedUser = this.state
+        const authenticatedUser = JSON.parse(localStorage.getItem("user"))
 
         const value = {
-            user,
-            data: this.data
+            authenticatedUser,
+            data: this.data,
+            actions: {
+                signIn: this.signIn,
+                signOut: this.signOut
+            }
         };
 
         return (
@@ -33,6 +38,23 @@ export class Provider extends Component {
               { this.props.children } 
             </Context.Provider>
         );
+    }
+
+    signIn = async (username, password) => {
+        const user = await this.data.getUser(username, password);
+        if (user !== null) {
+            user.password = password;
+            this.setState(() => {
+                localStorage.setItem("user", JSON.stringify(user))
+                return {authenticatedUser: user};
+            });
+        }
+        return user;
+    }
+
+    signOut = () => {
+        this.setState({ authenticatedUser: null });
+        localStorage.clear();
     }
 }
 //{ this.props.children } is a special React prop that lets you pass components as data to other components
