@@ -44,12 +44,15 @@ export default class UserSignUp extends Component {
             confirmPassword
         };
 
-        context.data.createUser(user)
-        .then( errors => {
-            if (errors.length) {
-                this.setState({ errors });
+        context.data.createUser(this.props.history, user)
+        .then( response => {
+            if (response.error) {
+                if (response.errors.length > 0) {
+                    this.setState({
+                        errors: response.errors
+                    });
+                }
             } else {
-                console.log(`${firstName} ${lastName} is successfully signed up and authenticated!`);
                 context.actions.signIn(emailAddress, password)
                                 .then(() => {
                                     this.props.history.push('/')
@@ -135,5 +138,3 @@ export default class UserSignUp extends Component {
         );
     }
 }
-
-// FIX CSS

@@ -10,5 +10,3 @@ export default () => (
     </Link>
   </div>
 );
-
-// FIX CSS

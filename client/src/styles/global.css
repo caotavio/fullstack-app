@@ -120,7 +120,7 @@ section {
 /* line 125, ../sass/reset.sass */
 b,
 strong {
-  font-weight: bold;
+  font-weight: 500;
 }
 
 /* line 132, ../sass/reset.sass */
@@ -202,12 +202,12 @@ svg {
 /* line 5, ../sass/global.sass */
 body {
   font-family: "Work Sans", sans-serif;
-  background: #fff;
+  background: #eceff1;
 }
 
 /* line 13, ../sass/global.sass */
 .header {
-  background: #57496e;
+  background: #1b5e20;
   padding: 20px 0;
   margin-bottom: 30px;
 }
@@ -220,8 +220,9 @@ body {
   display: inline-block;
 }
 /* line 23, ../sass/global.sass */
+/* changed css for the logo to become a home link without the standard hover css for the other links */
 .header--logo a {
-  color: rgba(255, 255, 255, 0.5);
+  color: #fff;
 }
 /* line 25, ../sass/global.sass */
 .header--logo a:hover {
@@ -282,7 +283,7 @@ h1 {
 
 /* line 61, ../sass/global.sass */
 a {
-  color: #7c689b;
+  color: #2e7d32;
   cursor: pointer;
   text-decoration: none;
   -webkit-transition: color 0.2s;
@@ -293,8 +294,9 @@ a {
 }
 
 /* line 66, ../sass/global.sass */
+/* changed font to Helvetica */
 p {
-  font-family: "Cousine";
+  font-family: "Helvetica";
   margin-bottom: 30px;
 }
 
@@ -339,7 +341,7 @@ p {
 
 /* line 102, ../sass/global.sass */
 .course--module {
-  background: #7c689b;
+  background: #2e7d32;
   border-radius: 8px;
   padding: 30px;
   margin-bottom: 30px;
@@ -386,7 +388,7 @@ p {
 }
 /* line 133, ../sass/global.sass */
 .course--add--module {
-  background: #eee;
+  background: #b0bec5;
   text-align: center;
 }
 /* line 137, ../sass/global.sass */
@@ -399,7 +401,7 @@ p {
 }
 /* line 141, ../sass/global.sass */
 .course--add--title {
-  color: #999;
+  color: #455a64;
   display: inline-block;
   font-size: 18px;
   position: absolute;
@@ -427,25 +429,25 @@ p {
 }
 /* line 164, ../sass/global.sass */
 .course--header .course--label {
-  font-size: 18px;
-  color: #999;
+  font-size: 28px;
+  color: #607d8b;
 }
 /* line 167, ../sass/global.sass */
 .course--header .course--title {
-  font-size: 48px;
+  font-size: 44px;
   margin-bottom: 15px;
   color: #332a40;
 }
 /* line 171, ../sass/global.sass */
 .course--header p {
-  font-size: 18px;
-  color: #b1a5c4;
+  font-size: 17px;
+  color: #607d8b;
   font-weight: 100;
 }
 /* line 176, ../sass/global.sass */
 .course--title--input {
   font-size: 48px;
-  font-weight: bold;
+  font-weight: 500;
   font-family: "Work Sans", sans-serif;
 }
 /* line 186, ../sass/global.sass */
@@ -575,7 +577,7 @@ p {
 .course--time--input {
   font-family: "Work Sans", sans-serif;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 500;
   margin: 0;
 }
 
@@ -623,7 +625,7 @@ textarea:-ms-input-placeholder {
 }
 /* line 485, ../sass/global.sass */
 textarea:focus {
-  border-color: #7c689b;
+  border-color: #2e7d32;
 }
 
 /* line 488, ../sass/global.sass */
@@ -656,29 +658,29 @@ input:-ms-input-placeholder {
 }
 /* line 500, ../sass/global.sass */
 input:focus {
-  border-color: #7c689b;
+  border-color: #2e7d32;
 }
 
 /* line 29, ../sass/mixins.sass */
 .input-title::-webkit-input-placeholder {
-  font-weight: bold;
+  font-weight: 500;
 }
 /* line 31, ../sass/mixins.sass */
 .input-title:-moz-placeholder {
-  font-weight: bold;
+  font-weight: 500;
 }
 /* line 33, ../sass/mixins.sass */
 .input-title::-moz-placeholder {
-  font-weight: bold;
+  font-weight: 500;
 }
 /* line 35, ../sass/mixins.sass */
 .input-title:-ms-input-placeholder {
-  font-weight: bold;
+  font-weight: 500;
 }
 
 /* line 507, ../sass/global.sass */
 .button {
-  background: #7c689b;
+  background: #2e7d32;
   color: #fff;
   font-family: "Work Sans", sans-serif;
   font-size: 18px;
@@ -686,7 +688,7 @@ input:focus {
   border: 0;
   margin-right: 10px;
   border-radius: 8px;
-  font-weight: bold;
+  font-weight: 300;
   display: inline-block;
   box-sizing: border-box;
   -webkit-transition: background 0.2s;
@@ -701,14 +703,14 @@ input:focus {
 }
 /* line 522, ../sass/global.sass */
 .button:not(.button-secondary):hover {
-  background: #63537d;
+  background: #66bb6a;
 }
 
 /* line 525, ../sass/global.sass */
 .button-secondary {
-  color: #7c689b;
+  color: #2e7d32;
   background: none;
-  box-shadow: 0 0 0 2px #7c689b inset;
+  box-shadow: 0 0 0 2px #2e7d32 inset;
   -webkit-transition: box-shadow 0.2s, color 0.2s;
   -moz-transition: box-shadow 0.2s, color 0.2s;
   -ms-transition: box-shadow 0.2s, color 0.2s;
@@ -717,8 +719,8 @@ input:focus {
 }
 /* line 530, ../sass/global.sass */
 .button-secondary:hover {
-  color: #63537d;
-  box-shadow: 0 0 0 2px #63537d inset;
+  color: #66bb6a;
+  box-shadow: 0 0 0 2px #66bb6a inset;
 }
 
 /* adds additional padding to the bottom of an element */
@@ -739,11 +741,11 @@ input:focus {
 
 /* styles the validation errors */
 .validation--errors--label {
-  color: #7c689b;
+  color: #2e7d32;
   font-size: 28px;
 }
 .validation-errors ul {
-  color: #7c689b;
+  color: #2e7d32;
   padding: 15px 0 40px 10px;
 }
 

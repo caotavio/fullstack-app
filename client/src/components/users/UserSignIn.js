@@ -23,7 +23,6 @@ export default class UserSignIn extends Component {
 
     submit = () => {
         const { context } = this.props;
-        // const { from } = this.props.location.state || { from: { pathname: '/' } }; //NOT WORKING
 
         const {
             emailAddress,
@@ -31,22 +30,21 @@ export default class UserSignIn extends Component {
         } = this.state;
 
         context.actions.signIn(emailAddress, password)
-        .then(user => {
-            if (user !== null) {
-            this.props.history.push('/');
-            console.log(`SUCCESS! ${emailAddress} is now signed in!`);
-            // localStorage.setItem("id", user.id);
-            // localStorage.setItem("firstName", user.firstName);
-            // localStorage.setItem("lastName", user.lastName);
-            // localStorage.setItem("email", user.emailAddress);
-            // localStorage.setItem("password", user.password);
-            // localStorage.setItem("isLoggedIn", true);
-            localStorage.setItem("user", JSON.stringify(user))
-
+        .then(response => {
+            if (response.error) {
+                if (response.errors.length > 0) {
+                    this.setState({
+                        errors: response.errors
+                    });
+                }
             } else {
-                this.setState(() => {
-                    return { errors: ["Login failed"] };
-                });
+                if (response.data !== null) {
+                    this.props.history.goBack();
+                } else {
+                    this.setState(() => {
+                        return { errors: ["Login failed"] };
+                    });
+                }
             }
         })
             .catch( err => {
@@ -58,6 +56,12 @@ export default class UserSignIn extends Component {
 
     cancel = () => {
        this.props.history.push('/');
+    }
+
+    componentDidMount() {
+        if (this.props.context.authenticatedUser) {
+            this.props.history.push('/')
+        }
     }
 
     render() {
@@ -104,5 +108,3 @@ export default class UserSignIn extends Component {
         );
     }
 }
-
-// FIX CSS

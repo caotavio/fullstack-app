@@ -1,6 +1,6 @@
 /*
-this file renders and handles the functionality of the submit and cancel buttons
-as well as rendering any validation errors from the API.
+  this file renders and handles the functionality of the submit and cancel buttons
+  as well as rendering any validation errors from the API.
 */
 
 import React from 'react';

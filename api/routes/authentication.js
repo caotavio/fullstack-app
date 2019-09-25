@@ -9,14 +9,21 @@ const authenticateUser = async (req, res, next) => {
     //check for user credentials and if authorized look for an email match
     const credentials = auth(req);
     if(credentials) {
-        if (! credentials.name){
+        let error = Array();
+        let message = null;
+
+        if (!credentials.name){
           message = `Please include email address.`;
-          res.status(422).json({ message: message });
-        } 
+          error.push(message);
+        }
         
         if (! credentials.pass){
           message = `Please include password.`;
-          res.status(422).json({ message: message });
+          error.push(message);
+        }
+
+        if (error.length > 0) {
+          res.status(422).json({ errors: error });
         }
 
         const user = await User.findOne(
@@ -32,7 +39,6 @@ const authenticateUser = async (req, res, next) => {
           const authenticated = bcryptjs.compareSync(credentials.pass, user.password);
           //if full authentication is successful, dependig on the endpoint match with user.id - course(userId) || user(id)
           if(authenticated) {
-            console.log(`Authentication successful for user: ${user.firstName} ${user.lastName}`);
                 if(req.originalUrl.includes('courses')) {
                     req.body.userId = user.id;
                 } else if(req.originalUrl.includes('users')) {
@@ -41,16 +47,16 @@ const authenticateUser = async (req, res, next) => {
           } else {
               //authentication was not successful
               message = `Login failed`;
-              res.status(401).json({ message: message });
+              res.status(401).json({ errors: [ message ]});
           }
         } else {
             //there was no user with an email address matching the email address in the authorization header
             message = `Username not found: ${credentials.name}`;
-            res.status(402).json({ message: message });
+            res.status(401).json({ errors: [ message ]});
         }
     } else {
       message = `Username or password invalid`;
-      res.status(401).json({ message: message });
+      res.status(401).json({ errors: [ message ]});
     }
 
     if(message) {

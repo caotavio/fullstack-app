@@ -7,10 +7,11 @@ export default class Header extends React.PureComponent {
         const { context } = this.props;
         const authenticatedUser = context.authenticatedUser;
 
+        //the mains header name "Courses" acts as a button to get you to the main path
         return (
             <div className="header">
                 <div className="bounds">
-                <h1 className="header--logo">Courses</h1>
+                <h1 className="header--logo"><Link to="/">Courses</Link></h1>
                     <nav>
                         {authenticatedUser ?
                             <React.Fragment>
