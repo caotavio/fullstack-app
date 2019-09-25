@@ -3,7 +3,8 @@
  A react client-side app that consumes a node/express REST API and performs all CRUD operations persisting them in a database.
 
  Usage:
- Download the files, open the terminal and navigate to:
+ <br>
+ Download the files, open the terminal and navigate to...
 
  ### The api directory:
 
