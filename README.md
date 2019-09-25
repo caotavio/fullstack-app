@@ -21,5 +21,7 @@
  ```
  cd/client... then run
  ```
+ ```
  npm install
  npm start (this will work on localhost:3000)
+ ```
