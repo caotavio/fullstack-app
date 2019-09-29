@@ -36,7 +36,6 @@ export default class Data {
             errors: {},
             data: []
         };
-        
         switch (response.status) {
             case 200:
                 return response.json().then(data => {

@@ -111,7 +111,7 @@ router.put('/:id', authenticateUser, asyncHandler(async (req, res, next) => {
       }
 
       if (error.length > 0) {
-        res.status(403).json({ errors: error });
+        res.status(422).json({ errors: error });
       }
       
       course.title = req.body.title;

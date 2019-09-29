@@ -18,24 +18,28 @@ class UpdateCourse extends Component {
         const { match } = this.props;
         await context.data.getCourseDetail(this.props.history, match.params.id)
             .then(response=>{
-                const name = `${response.data.user.firstName} ${response.data.user.lastName}`;
+                if (context.authenticatedUser.id === response.data.user.id) {
+                    const name = `${response.data.user.firstName} ${response.data.user.lastName}`;
         
-                const {
-                    title,
-                    description,
-                    estimatedTime,
-                    materialsNeeded,
-                    id
-                } = response.data;
-        
-                this.setState({
-                    name,
-                    id,
-                    title,
-                    description,
-                    estimatedTime,
-                    materialsNeeded,
-                });
+                    const {
+                        title,
+                        description,
+                        estimatedTime,
+                        materialsNeeded,
+                        id
+                    } = response.data;
+            
+                    this.setState({
+                        name,
+                        id,
+                        title,
+                        description,
+                        estimatedTime,
+                        materialsNeeded,
+                    });
+                } else {
+                    this.props.history.push(`/forbidden`);
+                }
             });
       }
 
