@@ -1,7 +1,8 @@
 export default class Data {
     //core interaction with the REST API
     api(history, path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
-        const url = `http://localhost:5000/api${path}`;
+        const url = process.env.API_URI || `http://localhost:5000`;
+        url = `${url}/api${path}`;
 
         const options = {
             method,
