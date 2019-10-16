@@ -4,8 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node git app.js",
-    "seed": "cross-env DB_ENABLE_LOGGING=true node './seed'",
+    "start": "node app.js",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "keywords": [],
