@@ -3,6 +3,7 @@ export default class Data {
     api(history, path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
         let url = process.env.API_URI || `http://localhost:5000`;
         url = `${url}/api${path}`;
+        //heroku is not reading process.env.API_URI
 
         const options = {
             method,
