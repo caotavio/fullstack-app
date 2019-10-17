@@ -1,7 +1,7 @@
 export default class Data {
     //core interaction with the REST API
     api(history, path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
-        let url = process.env.API_URI || `https://otavio-fullstack-api.herokuapp.com/`;
+        let url = process.env.API_URI || `https://otavio-fullstack-api.herokuapp.com`;
         url = `${url}/api${path}`;
         //heroku is not reading process.env.API_URI
 
