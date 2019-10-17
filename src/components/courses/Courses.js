@@ -34,7 +34,7 @@ class Courses extends Component {
                 <div key={ `a + ${index}`} className="grid-33">
                     <Link key={ `b + ${index}`} className="course--module course--link" id={course.id} to={`/courses/${course.id}`}>
                         <h4 key={ `c + ${index}`} className="course--label">Course</h4>
-                        <h3 key={ `d + ${index}`} className="course--title">{course.title} ->{process.env.API_URL}***</h3>
+                        <h3 key={ `d + ${index}`} className="course--title">{course.title}</h3>
                     </Link>
                 </div>
             )}
